@@ -31,7 +31,7 @@ size_t ULListStr::size() const
 std::string *ULListStr::getValAtLoc(size_t loc) const
 {
     // if location is greater than the size then it does not exist
-    if (loc >= size_ || size < 0)
+    if (loc >= size_)
     {
         return nullptr;
     }
@@ -110,8 +110,11 @@ void ULListStr::push_front(const std::string &val)
     else if (head_->first == 0)
     {
         Item *newNode = new Item();
+        // create new head and address points 
         newNode->next = head_;
+        // add value
         newNode->val[ARRSIZE - 1] = val;
+        // adjust first and last 
         newNode->first = ARRSIZE - 1;
         newNode->last = ARRSIZE;
 
@@ -121,6 +124,7 @@ void ULListStr::push_front(const std::string &val)
     // add if head is not full
     else
     {
+        // value at front
         head_->val[head_->first - 1] = val;
         head_->first--;
     }
